@@ -207,12 +207,11 @@
 
 11. 生命周期
 
-    1. React.js 控制组件在页面上挂载和删除过程里面几个方法
-       - ComponentWillMount: 组件挂载开始之前，也就是在组件调用 `render` 方法之前调用。
-       - ComponentDidMount: 组件挂载完成以后，也就是 DOM 元素已经插入页面后调用。
-       - ComponentWillUnmount:  组件对应的 DOM 元素从页面中删除之前调用。
-
-12. 
+    - 挂载阶段的生命周期函数：
+      - ComponentDidMount ： ajax，定时器启动
+      - ComponentWillUnmount
+    - 更新阶段的生命周期函数
+      - 
 
 ##### 
 
