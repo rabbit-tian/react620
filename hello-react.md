@@ -272,6 +272,72 @@
       <div style={{color: "red",fontSize: "10px"}}>我要加style </div>
       ```
 
+15. react命名及顺序的规范写法
+
+    - 命名：组件的私有方法都用 `_` 开头，所有事件监听的方法都用 `handle` 开头。把事件监听方法传给组件的时候，属性名用 `on` 开头，
+    - 组件的内容编写顺序：
+      - static 开头的类属性，如 `defaultProps`、`propTypes`。
+      - 构造函数，`constructor`。
+      - getter/setter（还不了解的同学可以暂时忽略）。
+      - 组件生命周期。
+      - `_` 开头的私有方法。
+      - 事件监听方法，`handle*`。
+      - `render*`开头的方法，有时候 `render()` 方法里面的内容会分开到不同函数里面进行，这些函数都以 `render*` 开头。
+      - `render()` 方法。
+
+16. 高阶组件
+
+    - 为了组件之间的代码复用
+
+    - 组件可能有着某些相同的逻辑，把这些逻辑抽离出来，放到高阶组件中进行复用
+
+    - 高阶组件内部的包装组件和被包装组件之间通过 props 传递数据
+
+      ```js
+      //  wrapWithLoadData 组件
+      // 作用：newComponent组件根据第二个参数name，获取到存储的数据，并且更新到自己的 data 中，渲染的时候将 state.data 通过 props.data 传给 WrappedComponent。
+      
+      import React, { Component } from 'react'
+      export default (WrapWithLoadData,name) => {
+        	class newComponent extends Component {
+            constructor () {
+              super()
+              this.state = { data: null }
+            } 
+            componentDidMount () {
+              let data = localStorage.getItem(name);
+              this.setState({data})
+            }
+            render(){
+              return (
+                <WrapWithLoadData data={this.state.data}/>
+              )
+            }
+          }
+          return newComponent
+      }
+      
+      
+      // 我们在  src/wrapWithLoadData.js  中使用这个高阶函数
+      
+      import wrapWithLoadData from './wrapWithLoadData'
+      class InputWithUsername extends Component {
+        render() {
+          return (
+          	<div>
+            	<input value={this.props.state}/>
+            </div>
+          )
+        }
+      }
+      
+      InputWithUsername = wrapWithLoadData(InputWithUsername,'username')
+      
+      export default InputWithUsername
+      
+      
+      ```
+
       
 
 ##### 
