@@ -211,7 +211,68 @@
       - ComponentDidMount ： ajax，定时器启动
       - ComponentWillUnmount
     - 更新阶段的生命周期函数
-      - 
+      - shouldComponentUpdate(nextProps, nextState) ：
+      - componentDidUpdate() : 组件重新渲染并且把更改变更到真实的 DOM 以后调用
+
+12. ref 和react.js 中 dom 的操作
+
+13. props.children 和 容器类组件
+
+    - 相当于 vue 里面的插槽
+
+    ```js
+    class Card extends Component {
+      render() {
+        return (
+          <div className='card'>
+            <div className='card-content'>
+              {this.props.children}
+            </div>
+          </div>
+        )
+      }
+    }
+    
+    class Ref extends Component {
+      render () {
+        return (
+          <div>
+            <Card>
+              <h2>哈哈哈</h2>
+              <input/>
+            </Card>
+          </div>
+        )
+      }
+    }
+    ```
+
+14. dangerourslySetHTML 和 style 属性
+
+    - dangerourslySetHTML:  出于安全考虑的原因（XSS 攻击），在 React.js 当中所有的表达式插入的内容都会被自动转义，就相当于 jQuery 里面的 `text(…)` 函数一样，任何的 HTML 格式都会被转义掉，
+
+      ```js
+      class dangerously extends Component {
+        state = {
+          content: "<h1>我是html</h1>"
+        }
+        render() {
+          return (
+            <div dangerouslySetInnerHTML={{ __html: this.state.content}}/>
+          )
+        }
+      }
+      ```
+
+    - Style:
+
+      - 驼峰命名,  键值对
+
+      ```js
+      <div style={{color: "red",fontSize: "10px"}}>我要加style </div>
+      ```
+
+      
 
 ##### 
 
