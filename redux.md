@@ -87,6 +87,10 @@
 2. context的出现：将共享组件放在父组件的 context 上，这个父组件下的所有组件都可以从context中直接获取数据，而不需要传递数据
    - 缺点：所有组件都可能修改context中状态，导致程序运行的不可预料性
 3. 将context和store结合起来，store里面的数据 只能通过dispatch 来修改，解决了context的问题
+   - 创建store
+   - store.getState(): 获取数据
+   - store.dispatch(): 修改数据
+   - store.subscribe(): 监听数据
 4. 
 
 
