@@ -85,13 +85,32 @@
    - 缺点：一层层传递，对于结构复杂的大项目来说，很是繁琐
 
 2. context的出现：将共享组件放在父组件的 context 上，这个父组件下的所有组件都可以从context中直接获取数据，而不需要传递数据
+
    - 缺点：所有组件都可能修改context中状态，导致程序运行的不可预料性
+
 3. 将context和store结合起来，store里面的数据 只能通过dispatch 来修改，解决了context的问题
+
+   — 问题： 大量重复代码，对 context依赖性过强
+
    - 创建store
    - store.getState(): 获取数据
    - store.dispatch(): 修改数据
    - store.subscribe(): 监听数据
-4. 
+
+4. connect 和 mapStateToProps
+
+   - 高阶组件，减少重复代码，包装的新组件和原来组件通过props传递信息
+   - Dumb 组件：减少依赖，只依赖传进来的props和自己的state，不依赖外界任何数据
+   - 高阶组件connect和 context 打交道，把里面数据取出来通过 `props` 传给 Dumb 组件
+     - `connect` 函数接受一个组件 `WrappedComponent` 作为参数，把这个组件包含在一个新的组件 `Connect` 里面，`Connect` 会去 context 里面取出 store。现在要把 store 里面的数据取出来通过 `props` 传给 `WrappedComponent`。
+
+5. mapDispatchToProps
+
+   - 一个参数来告诉它我们的组件需要如何触发 `dispatch`
+
+6. Provider
+
+   - `Provider` 做的事情也很简单，它就是一个容器组件，会把嵌套的内容原封不动作为自己的子组件渲染出来。它还会把外界传给它的 `props.store` 放到 context，这样子组件 `connect` 的时候都可以获取到。
 
 
 
