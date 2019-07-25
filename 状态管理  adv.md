@@ -48,9 +48,55 @@
 
 12. 路由跳转的两种方式
 
-    - 
+    - 父子关系传递：拿到父组件传来的   `history`，然后 ` history.push('./')`
+
+    - 其他关系：使用高阶组件包裹一下，withRouter包裹一下子组件，不用传history
+
+    - 从`dva/router`中解构出 `link`进行跳转  `<link to="/">go home</link>`
+
+    - 使用上下文跳转  
+
+      ```js
+      Counter.contextTypes = {
+        router: PropTypes.object
+      }
+      <button onClick={context.router.history.push('/')}>go home(context)</button>
+      ```
+
+    -  routerRedux
+
+      ```js
+      <button onClick={() => dispatch(routerRedux.push('/'))}>go home(routerRedux)</button>
+      ```
+
+    - Effect 中写`routerRedux`跳转:
+
+      ```js
+      import { routerRedux } from 'dva/router'
+      yield put(routerRedux.push('/'))
+      ```
 
     
+
+13.   subscriptions 订阅 
+
+    - 监听数据变化，触发事件
+
+14. 发送ajax请求
+
+15. 
+
+16. 
+
+    
+
+    
+
+      
+
+      
+
+      
 
 
 
